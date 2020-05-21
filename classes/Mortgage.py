@@ -2,7 +2,7 @@ import statistics
 import copy
 import os
 import itertools
-import np
+import numpy as np
 
 class Mortgage(object):
     '''
