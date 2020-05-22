@@ -1,5 +1,6 @@
 import home_ownership
 import json
+import numpy
 '''
 written and copywrited by MILLETTE,LOUIS 2020
 All rights reserved
