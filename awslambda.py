@@ -40,7 +40,7 @@ def validate(event):
     for argument in ['total_years', 'mortgageable_months', 'list_price', 'taxable_price', 'selling_price_current_year_dollars',
                      'sales_tax', 'monthly_interest_rate', 'property_tax_rate_yearly', 'new', 'down_payment', 'fixed_closeing_costs',
                      'rental_income', 'percent_time_unit_occupied', 'maintainance_monthly', 'condo_fees_monthly', 'income_tax_rate_company',
-                     'income_tax_rate_individual']:
+                     'income_tax_rate_individual', 'home_insurance_monthly']:
         if not event.get(argument):
             status, error = False, f'{argument} is not defined'
     event["total_years"] = int(event["total_years"])
@@ -57,6 +57,7 @@ def validate(event):
     event["rental_income"] = int(event["rental_income"])
     event["percent_time_unit_occupied"] = float(event["percent_time_unit_occupied"])
     event["maintainance_monthly"] = float(event["maintainance_monthly"])
+    event["home_insurance_monthly"] = float(event["home_insurance_monthly"])
     event["condo_fees_monthly"] = int(event["condo_fees_monthly"])
     event["income_tax_rate_company"] = float(event["income_tax_rate_company"])
     event["income_tax_rate_individual"] = float(event["income_tax_rate_individual"])
