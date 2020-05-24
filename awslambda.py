@@ -66,10 +66,13 @@ def validate(event):
 
 def jsonp(function):
     def wraper(event,context):
-        callback = event['callback']
+
+        callback = event.get('callback')
         event = event['queryStringParameters']
         r = function(event,context)
-        r['body'] = '{}{});'.format(callback,r['body'])
+        if callback and callback != '':
+            # if callback is empty, send back json as is
+            r['body'] = '{}{});'.format(callback,r['body'])
         return r
     return wraper
 
@@ -85,7 +88,8 @@ def lambda_handler(event, context):
             sales_tax=event['sales_tax'], monthly_interest_rate=event['monthly_interest_rate'], property_tax_rate_yearly=event['property_tax_rate_yearly'],
             new=event['new'], down_payment=event['down_payment'], fixed_closeing_costs= event['fixed_closeing_costs'], rental_income=event['rental_income'],
             percent_time_unit_occupied=event['percent_time_unit_occupied'], maintainance_monthly=event['maintainance_monthly'],
-            condo_fees_monthly=event['condo_fees_monthly'], income_tax_rate_company=event['income_tax_rate_company'], income_tax_rate_individual=event['income_tax_rate_individual'])
+            condo_fees_monthly=event['condo_fees_monthly'], income_tax_rate_company=event['income_tax_rate_company'], income_tax_rate_individual=event['income_tax_rate_individual'],
+            home_insurance_monthly=event['home_insurance_monthly'])
         return {'statusCode': 200, 'headers': {"Content-Type": "jsonp"}, 'body': json.dumps({
             'cash_flow': cash_flow,
             'number_of_months_to_pay_back_initial': number_of_months_to_pay_back_initial,
