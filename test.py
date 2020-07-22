@@ -3,7 +3,7 @@ import unittest
 import home_ownership
 
 class TestRentalProperty(unittest.TestCase):
-    def rental(self):
+    def test_rental(self):
         '''
         These are the closeing costs on a new, $500,000 condo in Toronto
         closing costs:
@@ -99,27 +99,6 @@ class TestRentalProperty(unittest.TestCase):
         self.assertIn('eac', ret)
         self.assertIn('real_reinvested_profits', ret)
         print(awslambda.lambda_handler(event, None))
-
-    # def test_regular_cases(self):
-    #     event = {
-    #         'queryStringParameters': {
-    #             'callback': 'func(10,20,',
-    #             'home_price': 240000,
-    #             'down_percent': 0.2,
-    #             'coho': 50,
-    #             'c': 0.00417,
-    #             'n': 420,
-    #             'd': 200,
-    #             'marginal': 0.30,
-    #             'metric': 'median',
-    #             'quartile': 20,
-    #             'state': 'Ohio',
-    #             'fee': 0.0005,
-    #             'filing': 'single',
-    #             'real': True
-    #         }
-    #     }
-    #     print(awslambda.lambda_handler(event,None))
 
 if __name__ == '__main__':
     unittest.main()

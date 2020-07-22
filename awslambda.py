@@ -43,7 +43,7 @@ def validate(event):
                      'income_tax_rate_individual', 'home_insurance_monthly']:
         if not event.get(argument):
             svtatus, error = False, f'{argument} is not defined'
-    print([eent])
+    print([event])
     event["total_years"] = int(event["total_years"])
     event["mortgageable_months"] = int(event["mortgageable_months"])
     event["list_price"] = int(event["list_price"])
