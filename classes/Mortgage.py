@@ -78,6 +78,7 @@ class Mortgage(object):
             interest_payments.append(interest_payment)
             balance_left.append(balance_running)
             period += 1
+        print(p)
         return interest_payments, principle_payments,balance_left
 
     '''

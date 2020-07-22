@@ -42,7 +42,8 @@ def validate(event):
                      'rental_income', 'percent_time_unit_occupied', 'maintainance_monthly', 'condo_fees_monthly', 'income_tax_rate_company',
                      'income_tax_rate_individual', 'home_insurance_monthly']:
         if not event.get(argument):
-            status, error = False, f'{argument} is not defined'
+            svtatus, error = False, f'{argument} is not defined'
+    print([eent])
     event["total_years"] = int(event["total_years"])
     event["mortgageable_months"] = int(event["mortgageable_months"])
     event["list_price"] = int(event["list_price"])
@@ -66,9 +67,11 @@ def validate(event):
 
 def jsonp(function):
     def wraper(event,context):
-
         callback = event.get('callback')
-        event = event['queryStringParameters']
+        event = event['queryStringParameters'] if event.get('queryStringParameters') else event
+        if not callback:
+            callback = event.get('callback')
+        print([event])
         r = function(event,context)
         if callback and callback != '':
             # if callback is empty, send back json as is
