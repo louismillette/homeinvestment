@@ -73,3 +73,12 @@ class Investment(object):
                 break
         print(real_reinvested_profits)
         return real_reinvested_profits
+
+    # takes list of nominal monthly cash flows.  Decreases each month by a 3.5% annual inflation rate
+    def make_cashflow_real(self, cashflow):
+        real_cash_flow, multiplier = [], 1
+        monthly_infl_rate = 0.035 ** (1/12)
+        for amount in cashflow:
+            real_cash_flow += [amount / multiplier]
+            multiplier *= monthly_infl_rate
+        return real_cash_flow

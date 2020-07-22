@@ -51,10 +51,11 @@ def rental_property(total_years, mortgageable_months, list_price, selling_price_
     eai = round(I.invest([max((-1) * ele, 0) for ele in cash_flow], real=True))  # equivilent value of investment
     rer = I.invest([max(ele, 0) for ele in cash_flow])
     cash_flow = [round(ele) for ele in cash_flow]
+    real_cash_flow = I.make_cashflow_real(cash_flow)
     real_reinvested_profits = round((rer + selling_price_current_year_dollars * .95) * (1 - income_tax_rate_individual))
 
     # I.asset_value(cash_flow, selling_price_current_year_dollars, remainint_balance, income_tax_rate_individual)
 
-    return cash_flow, number_of_months_to_pay_back_initial, nominal_profit, real_profit, eai, real_reinvested_profits
+    return cash_flow, number_of_months_to_pay_back_initial, nominal_profit, real_profit, eai, real_reinvested_profits, real_cash_flow
 
 

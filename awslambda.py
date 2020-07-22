@@ -85,7 +85,7 @@ def lambda_handler(event, context):
     if not status:
         return {'statusCode': 400, 'headers': {"Content-Type": "jsonp"}, 'body': json.dumps({'error': error})}
     else:
-        cash_flow, number_of_months_to_pay_back_initial, nominal_profit, real_profit, eac, real_reinvested_profits = \
+        cash_flow, number_of_months_to_pay_back_initial, nominal_profit, real_profit, eac, real_reinvested_profits, real_cash_flow = \
             home_ownership.rental_property(total_years=event['total_years'], mortgageable_months=event['mortgageable_months'],
             list_price=event['list_price'], taxable_price=event['taxable_price'], selling_price_current_year_dollars=event['selling_price_current_year_dollars'],
             sales_tax=event['sales_tax'], monthly_interest_rate=event['monthly_interest_rate'], property_tax_rate_yearly=event['property_tax_rate_yearly'],
@@ -95,6 +95,7 @@ def lambda_handler(event, context):
             home_insurance_monthly=event['home_insurance_monthly'])
         return {'statusCode': 200, 'headers': {"Content-Type": "jsonp"}, 'body': json.dumps({
             'cash_flow': cash_flow,
+            'real_cash_flow': real_cash_flow,
             'number_of_months_to_pay_back_initial': number_of_months_to_pay_back_initial,
             'nominal_profit': nominal_profit,
             'real_profit': real_profit,
